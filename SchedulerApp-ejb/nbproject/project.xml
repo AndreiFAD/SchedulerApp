@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.j2ee.ejbjarproject</type>
+    <configuration>
+        <buildExtensions xmlns="http://www.netbeans.org/ns/ant-build-extender/1"/>
+        <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
+            <name>SchedulerApp-ejb</name>
+            <minimum-ant-version>1.6.5</minimum-ant-version>
+            <included-library dirs="200">file.reference.curvesapi-1.04.jar</included-library>
+            <included-library dirs="200">file.reference.dom4j-1.6.1.jar</included-library>
+            <included-library dirs="200">file.reference.ojdbc6.jar</included-library>
+            <included-library dirs="200">file.reference.opencsv-3.8.jar</included-library>
+            <included-library dirs="200">file.reference.poi-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-3.7-20101029.jar</included-library>
+            <included-library dirs="200">file.reference.poi-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.poi-examples-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-examples-3.7-20101029.jar</included-library>
+            <included-library dirs="200">file.reference.poi-examples-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.poi-excelant-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-excelant-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-3.7-20101029.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-schemas-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-schemas-3.7-20101029.jar</included-library>
+            <included-library dirs="200">file.reference.poi-ooxml-schemas-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.poi-scratchpad-3.15.jar</included-library>
+            <included-library dirs="200">file.reference.poi-scratchpad-3.7-20101029.jar</included-library>
+            <included-library dirs="200">file.reference.poi-scratchpad-3.8-20120326.jar</included-library>
+            <included-library dirs="200">file.reference.xmlbeans-2.6.0.jar</included-library>
+            <included-library dirs="200">file.reference.jacob.jar</included-library>
+            <included-library dirs="200">file.reference.mysql-connector-java-5.1.39-bin.jar</included-library>
+            <included-library dirs="200">file.reference.commons-collections4-4.1.jar</included-library>
+            <included-library dirs="200">file.reference.jcifs-1.2.25.jar</included-library>
+            <included-library dirs="200">file.reference.org.apache.commons.httpclient.jar</included-library>
+            <included-library dirs="200">file.reference.commons-logging-1.2.jar</included-library>
+            <included-library dirs="200">file.reference.commons-codec-1.10.jar</included-library>
+            <included-library dirs="200">file.reference.apache-commons-net.jar</included-library>
+            <included-library dirs="200">file.reference.json-simple-1.1.1.jar</included-library>
+            <source-roots>
+                <root id="src.dir"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir"/>
+            </test-roots>
+        </data>
+    </configuration>
+</project>

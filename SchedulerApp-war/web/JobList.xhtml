@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Job List</title>
+        <style>
+           body {
+                    font-size: 12px; 
+                    font-weight: normal !important
+                }
+           form {
+                    width: available
+                }
+        </style>
+    </h:head>
+    <h:body>
+         
+            <h:form style="text-align: right;">
+            <h3>Welcome: #{login.user} </h3> 
+            <p:commandButton  ajax="false" action="#{login.logout}" value="Logout"/>
+            <br></br>
+             
+            </h:form>
+            <h2>Active Job List</h2>
+        <div class="ui-fluid">
+       <p:messages showDetail="true"/>
+            <h:form>
+  
+             <p:commandButton ajax="false" action="#{JobMBean.gotoNew}" value="New Job"/>
+             <p:commandButton value="Refresh"   ajax="false" action="JobList?faces-redirect=true" />
+             <p:commandButton value="Inactive Job List" ajax="false" action="InactiveJobList?faces-redirect=true" />
+             <br></br>
+             <br></br>
+             <p:dataTable  id="jobList" value="#{JobList.jobs}"  var="item" first="0" paginator="true" rows="20" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,20,50,100" emptyMessage="No jobs found with given criteria" >
+                <p:column sortBy="#{item.jobId}" filterBy="#{item.jobId}"  headerText="Job ID"  filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Job ID"/>
+                    </f:facet>
+                    <h:commandLink action="#{JobMBean.setSelectedJob(item)}" value="#{item.jobId}"/>
+                </p:column>
+                <p:column sortBy="#{item.username}" filterBy="#{item.username}"  headerText="Job Owner"  filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Job Owner"/>
+                    </f:facet>
+                    <h:outputText value="#{item.username}"/>
+                </p:column>
+                <p:column sortBy="#{item.jobName}" filterBy="#{item.jobName}" headerText="Name"  filterMatchMode="contains" >
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.jobName}"/>
+                </p:column>
+                <p:column  sortBy="#{item.methodtype}" filterBy="#{item.methodtype}" headerText="Process type"  filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Process type"/>
+                    </f:facet>
+                    <h:outputText value="#{item.methodtype}"/>
+                </p:column>
+                <p:column sortBy="#{item.startDateStr}" headerText="Start Date">
+                    <f:facet name="header">
+                        <h:outputText value="Start Date"/>
+                    </f:facet>
+                    <h:outputText value="#{item.startDateStr}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="End Date"/>
+                    </f:facet>
+                    <h:outputText value="#{item.endDateStr}"/>
+                </p:column>
+                <p:column sortBy="#{item.nextTimeoutStr}" headerText="Next Timeout">
+                    <f:facet name="header">
+                        <h:outputText value="Next Timeout"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nextTimeoutStr}"/>
+                </p:column>
+                
+            </p:dataTable>
+         
+            
+        </h:form>
+        <p:messages showDetail="true"/>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Active Job Details</title>
+        <style>
+            body {
+                font-size: 13px;
+                font-weight: normal !important
+              
+            }
+            form {
+                width: available
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+            <h:form style="text-align: right;">
+            <h3>Welcome: #{login.user} </h3> <p:commandButton  ajax="false" action="#{login.logout}" value="Logout"/>
+            </h:form>
+        <h2>Job Details</h2>
+        <p:messages showDetail="true"/>
+
+        <h:form>
+
+            <p:commandButton value="Back"   ajax="false" action="JobList?faces-redirect=true" />
+            <p:commandButton value="Update" ajax="false" action="#{JobMBean.updateJob}"/>
+            <p:commandButton value="Deactivate" ajax="false" action="#{JobMBean.inactivateJob}"/>
+            <p:commandButton value="Run Test" ajax="false" action="#{JobMBean.TestJob}"/>
+
+
+        
+             <br></br>
+             <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                <h:outputText value="BASIC DATA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"  style="font-size: 15px" />
+                <h:outputText value="FORM" style="font-size: 15px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Job ID:"/>
+                <p:inputText id="jobId" value="#{JobMBean.selectedJob.jobId}" size="60" readonly="true" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Job Name:"/>
+                <p:inputText id="jobName" value="#{JobMBean.selectedJob.jobName}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value=""/>
+                <h:outputText value="JNDI of Session Bean:"/>
+                <p:inputText id="jobClass" value="#{JobMBean.selectedJob.jobClassName}" size="60" readonly="true" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Job Owner username:"/>
+                <p:inputText id="username" value="#{JobMBean.selectedJob.username}" size="60" style="font-weight: normal; font-size: 13px">
+                    <f:validateLength minimum="3" maximum="20" />
+                </p:inputText>
+                <h:outputText value="example: res1user342"/>
+                <h:outputText value="Process type"/>
+                <p:inputText id="methodtype" value="#{JobMBean.selectedJob.methodtype}" size="60" readonly="true" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                
+                <h:outputText value="Job dependence check:"/>
+                <p:selectOneMenu id="jobcheck" value="#{JobMBean.selectedJob.jobcheck}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="false" itemLabel="False" />
+                    <f:selectItem itemValue="true" itemLabel="True" /> 
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                <h:outputText value="Job id dependency:"/>
+                <p:inputText id="needjobid" value="#{JobMBean.selectedJob.needjobid}" size="60" converter="javax.faces.Integer" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: 987001"/>
+                
+                <h:outputText value="Start Date:"/>
+                <p:calendar id="startDate" value="#{JobMBean.selectedJob.startDate}" size="51" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="End Date:"/>
+                <p:calendar id="endDate" value="#{JobMBean.selectedJob.endDate}" size="51" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Second:"/>
+                <p:inputText id="second" value="#{JobMBean.selectedJob.second}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Minute:"/>
+                <p:inputText id="minute" value="#{JobMBean.selectedJob.minute}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Hour:"/>
+                <p:inputText id="hour" value="#{JobMBean.selectedJob.hour}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Day of Month:"/>
+                <p:inputText id="dayOfMonth" value="#{JobMBean.selectedJob.dayOfMonth}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Month:"/>
+                <p:inputText id="month" value="#{JobMBean.selectedJob.month}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Year:"/>
+                <p:inputText id="year" value="#{JobMBean.selectedJob.year}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Day Of Week:"/>
+                <p:inputText id="dayOfWeek" value="#{JobMBean.selectedJob.dayOfWeek}" size="60" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                <h:outputText value="Job Description:"/>
+                <p:inputTextarea cols="60" rows="4" id="description" value="#{JobMBean.selectedJob.description}" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1"  maximum="4000" />
+                </p:inputTextarea>
+                <h:outputText value=""/>
+                
+                <h:outputText value="Next Timeout:"/>
+                <p:inputText id="nextTimeout" value="#{JobMBean.selectedJob.nextTimeoutStr}" size="60" readonly="true" style="font-weight: normal; font-size: 13px"/>
+                <h:outputText value=""/>
+                
+                <h:outputText value="Email subject"/>
+                <p:inputText id="emailsubject" value="#{JobMBean.selectedJob.emailsubject}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: Week calls"/>
+                <h:outputText value="To email address"/>
+                <p:inputText id="emailto" value="#{JobMBean.selectedJob.emailto}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: mr.smith@yahoo.com; hello@hello.hu"/>
+                <h:outputText value="CC email address"/>
+                <p:inputText id="emailcc" value="#{JobMBean.selectedJob.emailcc}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: mr.smith@yahoo.com; hello@hello.hu"/>
+                <h:outputText value="BCC email address"/>
+                <p:inputText id="emailbcc" value="#{JobMBean.selectedJob.emailbcc}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: mr.smith@yahoo.com; hello@hello.hu"/>
+                <h:outputText value="Email attachment:"/>
+                <p:selectOneMenu id="emailattach" value="#{JobMBean.selectedJob.emailattach}" style="font-weight: normal; font-size: 13px">
+                                    <f:selectItem itemValue="-" itemLabel="-" />
+                                    <f:selectItem itemValue="YES" itemLabel="YES" />
+                </p:selectOneMenu>
+                <h:outputText value="example: YES, if '-' or null is then not be attached!"/>
+                
+            </h:panelGrid>
+                <br></br>
+            <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                <h:outputText value="EXCEL MACRO&nbsp;&nbsp;" style="font-size: 15px" />
+                <h:outputText value="FORM" style="font-size: 15px" />
+                <h:outputText value=""/>
+                <h:outputText value="Excel file path"/>
+                <p:inputText id="excelpath" value="#{JobMBean.selectedJob.excelpath}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: c:/temp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                <h:outputText value="Excel filename"/>
+                <p:inputText id="excelname" value="#{JobMBean.selectedJob.excelname}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: filename.xlsm"/>
+                <h:outputText value="Macro in file"/>
+                <p:inputText id="macroname" value="#{JobMBean.selectedJob.macroname}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: macro1"/>
+                
+                <h:outputText value="Final file path"/>
+                <p:inputText id="emailmacrofinalfile" value="#{JobMBean.selectedJob.emailmacrofinalfile}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: //.../pivot.xlsx"/>
+                
+            </h:panelGrid>
+                <br></br>
+            <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                <h:outputText value="ORACLE EXPORT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" style="font-size: 15px" />
+                <h:outputText value="FORM" style="font-size: 15px" />
+                <h:outputText value=""/>
+                <h:outputText value="export file path"/>
+                <p:inputText id="filePath" value="#{JobMBean.selectedJob.filePath}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: c:/temp"/>
+                <h:outputText value="export filename"/>
+                <p:inputText id="filename" value="#{JobMBean.selectedJob.filename}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="write filename without file format!"/>
+                <h:outputText value="fix filename"/>
+                <p:inputText id="filenamefix" value="#{JobMBean.selectedJob.filenamefix}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="When 'fix filename' is '-' then export filename will be: filename.20141231.123456.xlsx"/>
+                <h:outputText value="export file format"/>
+                <p:selectOneMenu id="fileformat" value="#{JobMBean.selectedJob.fileformat}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="-" itemLabel="-" />
+                    <f:selectItem itemValue=".csv" itemLabel="CSV" />
+                    <f:selectItem itemValue=".xls" itemLabel="XLS" />               
+                    <f:selectItem itemValue=".xlsx" itemLabel="XLSX" />      
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                <h:outputText value="Database"/>
+                <p:selectOneMenu id="dbname" value="#{JobMBean.selectedJob.dbname}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="-" itemLabel="-" />
+                    <f:selectItem itemValue="rep_1" itemLabel="Rep1" />
+                    <f:selectItem itemValue="rep_2" itemLabel="Rep1" />                 
+                    <f:selectItem itemValue="apex_1" itemLabel="Apex1" />      
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                <h:outputText value="Sql Query"/>
+                <p:inputTextarea cols="60" rows="4" id="SqlQuery" value="#{JobMBean.selectedJob.sqlQuery}" autoResize="true" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1"  maximum="4000" />
+                </p:inputTextarea>
+                <h:outputText value="without ';'"/>
+            </h:panelGrid>
+                <br></br>
+            <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                <h:outputText value="FROM MYSQL-CSV/XLSX IMPORT TO ORACLE" style="font-size: 15px" />
+                <h:outputText value="FORM" style="font-size: 15px" />
+                <h:outputText value=""/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;FROM MYSQL IMPORT"/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL url connection"/>
+                <p:inputText id="mysqlurl" value="#{JobMBean.selectedJob.mysqlurl}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: jdbc:mysql://ipaddress:port/schema"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL user"/>
+                <p:inputText id="mysqluser" value="#{JobMBean.selectedJob.mysqluser}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: user1name234"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL pass"/>
+                <p:inputText id="mysqlpass" value="#{JobMBean.selectedJob.mysqlpass}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: 12345"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL query"/>
+                <p:inputTextarea  cols="60" rows="4" id="mysqlquery" value="#{JobMBean.selectedJob.mysqlquery}" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1"  maximum="4000" />
+                </p:inputTextarea>
+                <h:outputText value="without ';'"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;FROM CSV/XLSX IMPORT"/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File Formatum"/>
+                <p:selectOneMenu id="getFileformattypetoora" value="#{JobMBean.selectedJob.fileformattypetoora}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="-" itemLabel="-" />
+                    <f:selectItem itemValue="csv" itemLabel=".CSV" />
+                    <f:selectItem itemValue="xlsx" itemLabel=".XLSX" />                       
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Import file folder path"/>
+                <p:inputText id="filefolderpath" value="#{JobMBean.selectedJob.filefolderpath}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: c:/temp/"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filename part"/>
+                <p:inputText id="filestringname" value="#{JobMBean.selectedJob.filestringname}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: *filename*"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Separator (if .csv file!)"/>
+                <p:inputText id="cvsSplitBy" value="#{JobMBean.selectedJob.cvsSplitBy}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: ; or ,"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After importing move to //path"/>
+                <p:inputText id="MovePatch" value="#{JobMBean.selectedJob.movePatch}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: c:/temp/importsuccessful/"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;TO ORACLE"/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle tabel name"/>
+                <p:inputText id="oracletabel" value="#{JobMBean.selectedJob.oracletabel}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: tabel1"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle tabel colname"/>
+                <p:inputText id="oraclecol" value="#{JobMBean.selectedJob.oraclecol}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: col1,col2,col3,col4"/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle dbname"/>
+                <p:selectOneMenu id="oracledbname" value="#{JobMBean.selectedJob.oracledbname}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="-" itemLabel="-" />
+                    <f:selectItem itemValue="rep_1" itemLabel="Rep1" />
+                    <f:selectItem itemValue="rep_2" itemLabel="Rep2" />                 
+                    <f:selectItem itemValue="apex_1" itemLabel="Apex1" />      
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truncate oracle tabel before insert?"/>
+                <p:selectOneMenu id="oradeletetabel" value="#{JobMBean.selectedJob.oradeletetabel}" style="font-weight: normal; font-size: 13px">
+                    <f:selectItem itemValue="N" itemLabel="No" />
+                    <f:selectItem itemValue="Y" itemLabel="Yes" />                       
+                </p:selectOneMenu>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+                <h:outputText value=""/>
+            </h:panelGrid>
+                <br></br>
+            <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                <h:outputText value=".EXE RUN" style="font-size: 15px" />
+                <h:outputText value="FORM"/>
+                <h:outputText value=""/>
+                <h:outputText value="Exe file run path + file"/>
+                <p:inputText id="exefilename" value="#{JobMBean.selectedJob.exefilename}" size="60" style="font-weight: normal; font-size: 13px">
+                                               <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: c:/temp/test.exe or c:/temp/test.cmd"/>
+            </h:panelGrid>
+               <br></br> 
+            <p:commandButton value="Back"   ajax="false" action="JobList?faces-redirect=true" />
+            <p:commandButton value="Update" ajax="false" action="#{JobMBean.updateJob}"/>
+            <p:commandButton value="Deactivate" ajax="false" action="#{JobMBean.inactivateJob}"/>
+            <p:commandButton value="Run Test" ajax="false" action="#{JobMBean.TestJob}"/>
+            <br></br>
+        </h:form>
+        <p:messages showDetail="true"/>
+        <br></br>
+        <br></br>
+        <h2>Last 10 Modifications: </h2>
+        <br></br>
+        
+        <p:dataTable  id="jobHstList" value="#{JobHstList.jobs}"  var="item" style="width: 600px;" first="0" sortBy="#{item.moddate}" rows="15" emptyMessage="No jobs found with given criteria" >
+                <p:column  headerText="Job ID" >
+                    <h:outputText value="#{item.jobId}"/>
+                </p:column>
+                <p:column  headerText="Timestamp" >
+                    <h:outputText value="#{item.moddate}"/>
+                </p:column>
+            <p:column  headerText="User Name" >
+                    <h:outputText value="#{item.user}"/>
+                </p:column>
+                <p:column  headerText="Change Type" >
+                     <h:outputText value="#{item.modtype}"/>
+                </p:column>
+        </p:dataTable>
+        <br></br>
+        <br></br>
+        <h2>Last 10 record from logMe: </h2>
+        <br></br>
+        
+        <p:dataTable  id="jobLogMe" value="#{JobLogMe.jobs}"  var="item" style="width: 800px;" first="0" sortBy="#{item.startDate}" rows="15" emptyMessage="No jobs found with given criteria" >
+                <p:column  headerText="Job ID" >
+                    <h:outputText value="#{item.jobId}"/>
+                </p:column>
+            <p:column headerText="Start Date" >
+
+                    <h:outputText value="#{item.startDate}"/>
+                </p:column>
+            <p:column  headerText="End Date" >
+                    <h:outputText value="#{item.endDate}"/>
+                </p:column>
+            <p:column   headerText="Job Name" >
+                     <h:outputText value="#{item.jobname}"/>
+                </p:column>
+            <p:column   headerText="Status" >
+                     <h:outputText value="#{item.jobstatus}"/>
+                </p:column>
+        </p:dataTable>
+    </h:body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Login</title>
+            
+        <style>
+           body {
+                    font-size: 12px; 
+                    font-weight: normal !important
+                }
+           form {
+                    width: available
+                }
+        </style>
+        
+</h:head>
+    
+<h:body>
+    
+    <div>
+        
+	<h:form>
+            
+		<h2>Login Report Scheduler</h2>
+                
+                <h:panelGrid columns="2" bgcolor="#eff5fa" style="width: auto">
+                    
+		<h:outputText value="Username" />
+                <p:inputText id="username" value="#{login.user}">
+                             <f:validateLength minimum="5" />
+                </p:inputText>		
+		<h:outputText value="Password" />
+                <p:password id="password" value="#{login.pwd}" feedback="true" redisplay="true">                                               
+                    <f:validateLength minimum="5" />
+                </p:password>
+                </h:panelGrid>
+
+                <br></br>
+
+		<p:commandButton value="Login" ajax="false" action="#{login.validateUsernamePassword}"/>
+                
+                <br></br>
+               
+                <br></br>
+                <br></br>
+
+	</h:form>
+            <p:messages showDetail="true"/>
+
+    </div>
+    
+</h:body>
+    
+</html>

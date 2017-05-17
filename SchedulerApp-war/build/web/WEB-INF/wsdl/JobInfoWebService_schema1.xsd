@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws_classes.schedulerapp.com/" xmlns:tns="http://ws_classes.schedulerapp.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Active" type="tns:Active"/>
+
+  <xs:element name="ActiveResponse" type="tns:ActiveResponse"/>
+
+  <xs:element name="Details" type="tns:Details"/>
+
+  <xs:element name="DetailsResponse" type="tns:DetailsResponse"/>
+
+  <xs:element name="Inactive" type="tns:Inactive"/>
+
+  <xs:element name="InactiveResponse" type="tns:InactiveResponse"/>
+
+  <xs:element name="JSONException" type="tns:JSONException"/>
+
+  <xs:element name="Test_Run" type="tns:Test_Run"/>
+
+  <xs:element name="Test_RunResponse" type="tns:Test_RunResponse"/>
+
+  <xs:element name="UpdateActiveJob" type="tns:UpdateActiveJob"/>
+
+  <xs:element name="UpdateActiveJobResponse" type="tns:UpdateActiveJobResponse"/>
+
+  <xs:complexType name="Details">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+      <xs:element name="Type" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DetailsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="JSONException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UpdateActiveJob">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+      <xs:element name="Item" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UpdateActiveJobResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Active">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="ActiveResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Inactive">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="InactiveResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Test_Run">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Test_RunResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
