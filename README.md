@@ -23,7 +23,7 @@ functions (Timer call batchjob):
 	
 	login users with AD
 	
-	webservice to active jobs update, active jobs run, read active or inactiv joblist (response json) example with mobileApp
+	webservice to active jobs update, active jobs run, read active or inactiv joblist and parameters detail (response json) example with mobileApp
 
 
 logs into a database with Oracle package
