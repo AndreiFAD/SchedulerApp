@@ -598,7 +598,10 @@ public class JobSessionBean
                             "nvl(FILEFOLDERPATH,''), \n" + 
                             "nvl(FILESTRINGNAME,''), \n" + 
                             "nvl(CSVSPLITBY,''), \n" + 
-                            "nvl(MOVEPATCH,'') \n" + 
+                            "nvl(MOVEPATCH,''), \n" + 
+                       
+                            "nvl(FILEFORMATTYPETOORA,'') \n" + 
+                       
                             " from SCHEDULER_APP_JOBS where ENDDATE < sysdate";
         FacesContext context = FacesContext.getCurrentInstance();
         java.sql.Connection conn = null;
@@ -662,7 +665,7 @@ public class JobSessionBean
                         newitem.setFilestringname(rsora.getString(43));
                         newitem.setCvsSplitBy(rsora.getString(44));
                         newitem.setMovePatch(rsora.getString(45));
-                        
+                        newitem.setFileformattypetoora(rsora.getString(46));
                         
                         if (!jobList2.contains(newitem)) {
                             jobList2.add(newitem);
