@@ -2,7 +2,7 @@
 
 Here is more examples to simplify your everyday life, making quick non-standard solutions, if you don’t have any tool for automation.
 
-System requirements:<br><br>
+System requirements (Works fine on old Desktop):<br><br>
 	min. 8 GB RAM or more<br>
 	CPU Core i3 or higher<br>
 	Win7 or Win10<br>
