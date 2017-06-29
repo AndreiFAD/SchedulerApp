@@ -18,9 +18,9 @@
 package com.schedulerapp.batchjob;
 
 import com.schedulerapp.FixClasses.BatchJobInterface;
-import com.schedulerapp.FixClasses.logytodb;
-import com.schedulerapp.FixClasses.lastlogtime;
-import com.schedulerapp.ProcessClasses.csvimporttooracle;
+import com.schedulerapp.FixClasses.Loggtodb;
+import com.schedulerapp.FixClasses.Lastlogtime;
+import com.schedulerapp.ProcessClasses.CsvImportToOracle;
 import com.schedulerapp.common.JobInfo;
 import java.sql.SQLException;
 import java.util.Date;
@@ -84,13 +84,13 @@ public class BatchJobF implements BatchJobInterface
                 String needjobid_last_time;
                 
                 try {
-                    lastlogtime tz =new lastlogtime();
+                    Lastlogtime tz =new Lastlogtime();
                     jobid_last_time=tz.lastlogtime(jobid);
                     needjobid_last_time=tz.lastlogtime(needjobid);
                     
                     if (needjobcheck.equals("true") && (jobid_last_time.equals("still has not run") || jobid_last_time.equals("never ran")) && needjobid_last_time.equals("completed today")){  // ha kell figyelni a függőséget és ő még ma nem futott
                     
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -101,7 +101,7 @@ public class BatchJobF implements BatchJobInterface
 
                         try {
                             
-                            csvimporttooracle u= new csvimporttooracle();
+                            CsvImportToOracle u= new CsvImportToOracle();
                             String results = u.csvimporttooracle(filefolderpath, filestringname, oracletabel, oraclecol, oracledbname, cvsSplitBy, oradeletetabel, MovePatch,fileformattypetoora);
                             
                             String resultsr = "-";
@@ -156,7 +156,7 @@ public class BatchJobF implements BatchJobInterface
                 
                 } else if (needjobcheck.equals("false")) {    
                         
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -167,7 +167,7 @@ public class BatchJobF implements BatchJobInterface
 
                         try {
                             
-                            csvimporttooracle u= new csvimporttooracle();
+                            CsvImportToOracle u= new CsvImportToOracle();
                             String results = u.csvimporttooracle(filefolderpath, filestringname, oracletabel, oraclecol, oracledbname, cvsSplitBy, oradeletetabel, MovePatch,fileformattypetoora);
                             
                             

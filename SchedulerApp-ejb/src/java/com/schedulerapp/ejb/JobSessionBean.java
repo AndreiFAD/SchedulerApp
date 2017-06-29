@@ -409,6 +409,10 @@ public class JobSessionBean
                 jobInfo.setJobClassName("java:module/BatchJobE");
             } else if (jobInfo.getMethodtype().equals("CSVtoOracle")){  
                 jobInfo.setJobClassName("java:module/BatchJobF");
+            } else if (jobInfo.getMethodtype().equals("SSHtunnelexportfromOracle")){  
+                jobInfo.setJobClassName("java:module/BatchJobG");
+            } else if (jobInfo.getMethodtype().equals("SSHtunnelOracleimporttoOracle")){  
+                jobInfo.setJobClassName("java:module/BatchJobH");
             } else {}
         // insert db-be
 
@@ -465,7 +469,17 @@ public class JobSessionBean
                         "  FILEFORMATTYPETOORA, \n" +
                         "  USERNAME, \n" +
                         "  jobcheck, \n" + 
-                        "  needjobid \n" + 
+                        "  needjobid, \n" + 
+                
+                        "  sshuser, \n" +
+                        "  sshpassword, \n" +
+                        "  sshhost, \n" +
+                        "  dbuserName, \n" +
+                        "  dbpassword, \n" +
+                        "  rhost, \n" +
+                        "  rsid, \n" +
+                        "  rport, \n" +
+                        "  exportquery \n" + 
                 
                         "  ) \n" +
                         "  VALUES \n" +
@@ -514,7 +528,17 @@ public class JobSessionBean
                         "'"+jobInfo.getFileformattypetoora().replace("'", "''")+"',"+
                         "'"+jobInfo.getUsername().toUpperCase().replace("'", "''")+"',"+
                         "'"+jobInfo.getJobcheck().replace("'", "''")+"',"+
-                        "'"+jobInfo.getNeedjobid().replace("'", "''")+
+                        "'"+jobInfo.getNeedjobid().replace("'", "''")+"',"+
+                        
+                        "'"+jobInfo.getSshuser().replace("'", "''")+"',"+
+                        "'"+jobInfo.getSshpassword().replace("'", "''")+"',"+
+                        "'"+jobInfo.getSshhost().replace("'", "''")+"',"+
+                        "'"+jobInfo.getDbuserName().replace("'", "''")+"',"+
+                        "'"+jobInfo.getDbpassword().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRhost().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRsid().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRport().replace("'", "''")+"',"+
+                        "'"+jobInfo.getExportquery().replace("'", "''")+
                 
                         "')";
                 java.sql.Connection conn = null;
@@ -600,7 +624,17 @@ public class JobSessionBean
                             "nvl(CSVSPLITBY,''), \n" + 
                             "nvl(MOVEPATCH,''), \n" + 
                        
-                            "nvl(FILEFORMATTYPETOORA,'') \n" + 
+                            "nvl(FILEFORMATTYPETOORA,''), \n" + 
+                            
+                            "nvl(sshuser,''), \n" +
+                            "nvl(sshpassword,''), \n" +
+                            "nvl(sshhost,''), \n" +
+                            "nvl(dbuserName,''), \n" +
+                            "nvl(dbpassword,''), \n" +
+                            "nvl(rhost,''), \n" +
+                            "nvl(rsid,''), \n" +
+                            "nvl(rport,''), \n" +
+                            "nvl(exportquery,'') \n" +
                        
                             " from SCHEDULER_APP_JOBS where ENDDATE < sysdate";
         FacesContext context = FacesContext.getCurrentInstance();
@@ -666,6 +700,16 @@ public class JobSessionBean
                         newitem.setCvsSplitBy(rsora.getString(44));
                         newitem.setMovePatch(rsora.getString(45));
                         newitem.setFileformattypetoora(rsora.getString(46));
+                        
+                        newitem.setSshuser(rsora.getString(47));
+                        newitem.setSshpassword(rsora.getString(48));
+                        newitem.setSshhost(rsora.getString(49));
+                        newitem.setDbuserName(rsora.getString(50));
+                        newitem.setDbpassword(rsora.getString(51));
+                        newitem.setRhost(rsora.getString(52));
+                        newitem.setRsid(rsora.getString(53));
+                        newitem.setRport(rsora.getString(54));
+                        newitem.setExportquery(rsora.getString(55));
                         
                         if (!jobList2.contains(newitem)) {
                             jobList2.add(newitem);
@@ -797,7 +841,18 @@ public class JobSessionBean
                          "FILEFORMATTYPETOORA= '"+jobInfo.getFileformattypetoora()+"',\n" +
                          "USERNAME= '"+jobInfo.getUsername().toUpperCase()+"',\n" +
                          "jobcheck= '"+jobInfo.getJobcheck()+"',\n" +
-                         "needjobid= '"+jobInfo.getNeedjobid()+"'\n" +
+                         "needjobid= '"+jobInfo.getNeedjobid()+"',\n" +
+
+                         "sshuser= '"+jobInfo.getSshuser()+"',\n" +
+                         "sshpassword= '"+jobInfo.getSshpassword()+"',\n" +
+                         "sshhost= '"+jobInfo.getSshhost()+"',\n" +
+                         "dbuserName= '"+jobInfo.getDbuserName()+"',\n" +
+                         "dbpassword= '"+jobInfo.getDbpassword()+"',\n" +
+                         "rhost= '"+jobInfo.getRhost()+"',\n" +
+                         "rsid= '"+jobInfo.getRsid()+"',\n" +
+                         "rport= '"+jobInfo.getRport()+"',\n" +
+                         "exportquery = '" + jobInfo.getExportquery()+"'\n"+
+                
                          "WHERE JOBID     = '"+jobInfo.getJobId()+"'";
                 
                 java.sql.Connection conn = null;
@@ -888,7 +943,19 @@ public class JobSessionBean
                          "FILEFORMATTYPETOORA= '"+jobInfo.getFileformattypetoora()+"',\n" +
                          "USERNAME= '"+jobInfo.getUsername().toUpperCase()+"',\n" +
                          "jobcheck= '"+jobInfo.getJobcheck()+"',\n" +
-                         "needjobid= '"+jobInfo.getNeedjobid()+"'\n" +
+                         "needjobid= '"+jobInfo.getNeedjobid()+"',\n" +
+
+                         "sshuser= '"+jobInfo.getSshuser()+"',\n" +
+                         "sshpassword= '"+jobInfo.getSshpassword()+"',\n" +
+                         "sshhost= '"+jobInfo.getSshhost()+"',\n" +
+                         "dbuserName= '"+jobInfo.getDbuserName()+"',\n" +
+                         "dbpassword= '"+jobInfo.getDbpassword()+"',\n" +
+                         "rhost= '"+jobInfo.getRhost()+"',\n" +
+                         "rsid= '"+jobInfo.getRsid()+"',\n" +
+                         "rport= '"+jobInfo.getRport()+"',\n" +
+                         "exportquery = '" + jobInfo.getExportquery()+"'\n"+
+                
+               
                          "WHERE JOBID     = '"+jobInfo.getJobId()+"'";
                 
                 java.sql.Connection conn = null;
@@ -971,7 +1038,20 @@ public class JobSessionBean
                                  "FILEFORMATTYPETOORA= '"+jobbody.getString("fileformattypetoora")+"',\n" +
                                  "USERNAME= '"+jobbody.getString("username").toUpperCase()+"',\n" +
                                  "jobcheck= '"+jobbody.getString("jobcheck")+"',\n" +
-                                 "needjobid= '"+jobbody.getString("needjobid")+"'\n" +
+                                 "needjobid= '"+jobbody.getString("needjobid")+"',\n" +
+                        
+                        
+                                "sshuser= '"+jobbody.getString("sshuser")+"',\n" +
+                                "sshpassword= '"+jobbody.getString("sshpassword")+"',\n" +
+                                "sshhost= '"+jobbody.getString("sshhost")+"',\n" +
+                                "dbuserName= '"+jobbody.getString("dbuserName")+"',\n" +
+                                "dbpassword= '"+jobbody.getString("dbpassword")+"',\n" +
+                                "rhost= '"+jobbody.getString("rhost")+"',\n" +
+                                "rsid= '"+jobbody.getString("rsid")+"',\n" +
+                                "rport= '"+jobbody.getString("rport")+"',\n" +
+                   
+                                "exportquery= '"+jobbody.getString("exportquery")+"'\n" +
+                        
                                  "WHERE JOBID     = '"+jobbody.getString("jobId")+"'";
 
                         java.sql.Connection conn = null;
@@ -1079,6 +1159,17 @@ public class JobSessionBean
                         u.setCvsSplitBy(jobidelementjson.getString("csvSplitBy"));
                         u.setMovePatch(jobidelementjson.getString("MovePatch"));
                         u.setFileformattypetoora(jobidelementjson.getString("fileformattypetoora"));
+                        
+                        u.setSshuser(jobidelementjson.getString("sshuser"));
+                        u.setSshpassword(jobidelementjson.getString("sshpassword"));
+                        u.setSshhost(jobidelementjson.getString("sshhost"));
+                        u.setDbuserName(jobidelementjson.getString("dbuserName"));
+                        u.setDbpassword(jobidelementjson.getString("dbpassword"));
+                        u.setRhost(jobidelementjson.getString("rhost"));
+                        u.setRsid(jobidelementjson.getString("rsid"));
+                        u.setRport(jobidelementjson.getString("rport"));
+                        
+                        u.setExportquery(jobidelementjson.getString("exportquery"));
                     
                     String hello=null;
                     if (u.getEndDateStr().equals("Never")){
@@ -1133,7 +1224,19 @@ public class JobSessionBean
                                      "FILEFORMATTYPETOORA= '"+u.getFileformattypetoora()+"',\n" +
                                      "USERNAME= '"+u.getUsername().toUpperCase()+"',\n" +
                                      "jobcheck= '"+u.getJobcheck()+"',\n" +
-                                     "needjobid= '"+u.getNeedjobid()+"'\n" +
+                                     "needjobid= '"+u.getNeedjobid()+"',\n" +
+                           
+                                     "sshuser= '"+u.getSshuser()+"',\n" +
+                                     "sshpassword= '"+u.getSshpassword()+"',\n" +
+                                     "sshhost= '"+u.getSshhost()+"',\n" +
+                                     "dbuserName= '"+u.getDbuserName()+"',\n" +
+                                     "dbpassword= '"+u.getDbpassword()+"',\n" +
+                                     "rhost= '"+u.getRhost()+"',\n" +
+                                     "rsid= '"+u.getRsid()+"',\n" +
+                                     "rport= '"+u.getRport()+"',\n" +
+                            
+                                     "exportquery= '"+u.getExportquery()+"'\n" +
+                            
                                      "WHERE JOBID     = '"+u.getJobId()+"'";
 
                             java.sql.Connection conn = null;
@@ -1191,7 +1294,18 @@ public class JobSessionBean
                                             "  needjobid, \n" + 
                                             "  MOD_USER, \n" +
                                             "  DATE_STR, \n" +
-                                            "  MOD \n" +
+                                            "  MOD, \n" +
+                                                                        
+                                            "  sshuser, \n" +
+                                            "  sshpassword, \n" +
+                                            "  sshhost, \n" +
+                                            "  dbuserName, \n" +
+                                            "  dbpassword, \n" +
+                                            "  rhost, \n" +
+                                            "  rsid, \n" +
+                                            "  rport, \n" +
+                                            "  exportquery \n" +
+                                    
                                             "  ) \n" +
                                             "  VALUES \n" +
                                             "  ('"+jobInfo.getJobId()+"',"+
@@ -1242,8 +1356,21 @@ public class JobSessionBean
                                             "'"+jobInfo.getNeedjobid().replace("'", "''")+"',"+
                                             "'"+jobidelementjson.getString("username")+"',"+
                                             "to_char(sysdate,'YYYYMMDDHH24MISS'),"+
-                                            "'updateJobWs'"+
-                                            ")";
+                                            "'updateJobWs',"+
+                                     
+                                            "'"+jobInfo.getSshuser().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getSshpassword().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getSshhost().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getDbuserName().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getDbpassword().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getRhost().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getRsid().replace("'", "''")+"',"+
+                                            "'"+jobInfo.getRport().replace("'", "''")+"',"+
+                                    
+                                            "'"+jobInfo.getExportquery().replace("'", "''")+
+                                    
+                                            "')";
+
                                     conn = null;
                                     try{
                                         System.out.println(sqlstring);
@@ -1334,7 +1461,19 @@ public class JobSessionBean
                          "FILEFORMATTYPETOORA= '"+jobInfo.getFileformattypetoora()+"',\n" +
                          "USERNAME= '"+jobInfo.getUsername().toUpperCase()+"',\n" +
                          "jobcheck= '"+jobInfo.getJobcheck()+"',\n" +
-                         "needjobid= '"+jobInfo.getNeedjobid()+"'\n" +
+                         "needjobid= '"+jobInfo.getNeedjobid()+"',\n" +
+                                           
+                         "sshuser= '"+jobInfo.getSshuser()+"',\n" +
+                         "sshpassword= '"+jobInfo.getSshpassword()+"',\n" +
+                         "sshhost= '"+jobInfo.getSshhost()+"',\n" +
+                         "dbuserName= '"+jobInfo.getDbuserName()+"',\n" +
+                         "dbpassword= '"+jobInfo.getDbpassword()+"',\n" +
+                         "rhost= '"+jobInfo.getRhost()+"',\n" +
+                         "rsid= '"+jobInfo.getRsid()+"',\n" +
+                         "rport= '"+jobInfo.getRport()+"',\n" +
+                   
+                         "exportquery= '"+jobInfo.getExportquery()+"'\n" +
+                   
                          "WHERE JOBID     = '"+jobInfo.getJobId()+"'";
                 
         
@@ -1452,7 +1591,19 @@ public class JobSessionBean
                          "FILEFORMATTYPETOORA= '"+jobInfo.getFileformattypetoora()+"',\n" +
                          "USERNAME= '"+jobInfo.getUsername().toUpperCase()+"',\n" +
                          "jobcheck= '"+jobInfo.getJobcheck()+"',\n" +
-                         "needjobid= '"+jobInfo.getNeedjobid()+"'\n" +
+                         "needjobid= '"+jobInfo.getNeedjobid()+"',\n" +
+                         
+                         "sshuser= '"+jobInfo.getSshuser()+"',\n" +
+                         "sshpassword= '"+jobInfo.getSshpassword()+"',\n" +
+                         "sshhost= '"+jobInfo.getSshhost()+"',\n" +
+                         "dbuserName= '"+jobInfo.getDbuserName()+"',\n" +
+                         "dbpassword= '"+jobInfo.getDbpassword()+"',\n" +
+                         "rhost= '"+jobInfo.getRhost()+"',\n" +
+                         "rsid= '"+jobInfo.getRsid()+"',\n" +
+                         "rport= '"+jobInfo.getRport()+"',\n" +
+                    
+                         "exportquery= '"+jobInfo.getExportquery()+"'\n" +
+                
                          "WHERE JOBID     = '"+jobInfo.getJobId()+"'";
                 
         

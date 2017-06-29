@@ -18,8 +18,8 @@
 package com.schedulerapp.batchjob;
 
 import com.schedulerapp.FixClasses.BatchJobInterface;
-import com.schedulerapp.FixClasses.lastlogtime;
-import com.schedulerapp.FixClasses.logytodb;
+import com.schedulerapp.FixClasses.Lastlogtime;
+import com.schedulerapp.FixClasses.Loggtodb;
 import com.schedulerapp.common.JobInfo;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,12 +77,12 @@ public class BatchJobB implements BatchJobInterface
                 String jobid_last_time;
                 String needjobid_last_time;
                 try {
-                    lastlogtime tz =new lastlogtime();
+                    Lastlogtime tz =new Lastlogtime();
                     jobid_last_time=tz.lastlogtime(jobid);
                     needjobid_last_time=tz.lastlogtime(needjobid);
                     if (needjobcheck.equals("true") && (jobid_last_time.equals("still has not run") || jobid_last_time.equals("never ran")) && needjobid_last_time.equals("completed today")){  // ha kell figyelni a függőséget és ő még ma nem futott
                     
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         try {
                                 vid = l.logentry(Integer.parseInt(jobid), jobname, "Start of BatchJobB at " + new Date() + "...");
@@ -156,7 +156,7 @@ public class BatchJobB implements BatchJobInterface
                         
                 } else if (needjobcheck.equals("false")) {
                         
-                         logytodb l = new logytodb();
+                         Loggtodb l = new Loggtodb();
                         int vid = 0;
                         try {
                                 vid = l.logentry(Integer.parseInt(jobid), jobname, "Start of BatchJobB "+jobid+" "+jobname+" at " + new Date() + "...");

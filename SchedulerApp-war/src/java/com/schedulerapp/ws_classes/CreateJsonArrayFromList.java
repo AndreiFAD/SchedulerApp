@@ -28,9 +28,9 @@ import org.primefaces.json.JSONObject;
  * @author Fekete András Demeter
  */
 
-public class createJsonArrayFromList implements java.io.Serializable
+public class CreateJsonArrayFromList implements java.io.Serializable
 {
-    public JSONArray createJsonArrayFromList(List<JobInfo> list, String type) throws JSONException {
+    public JSONArray CreateJsonArrayFromList(List<JobInfo> list, String type) throws JSONException {
             
         JSONArray ja = new JSONArray();
         
@@ -82,7 +82,19 @@ public class createJsonArrayFromList implements java.io.Serializable
             jo.put("emailmacrofinalfile", list.get(i).getEmailmacrofinalfile());
             jo.put("username", list.get(i).getUsername());
             jo.put("jobcheck", list.get(i).getJobcheck());
-            jo.put("needjobid", list.get(i).getNeedjobid());
+            jo.put("needjobid", list.get(i).getNeedjobid());            
+            
+            jo.put("sshuser", list.get(i).getSshuser());
+            jo.put("sshpassword", list.get(i).getSshpassword());
+            jo.put("sshhost", list.get(i).getSshhost());
+            jo.put("dbuserName", list.get(i).getDbuserName());
+            jo.put("dbpassword", list.get(i).getDbpassword());
+            jo.put("rhost", list.get(i).getRhost());
+            jo.put("rsid", list.get(i).getRsid());
+            jo.put("rport", list.get(i).getRport());
+            
+            jo.put("exportquery", list.get(i).getExportquery());
+            
             if (type == "A"){
                 jo.put("nextTimeout", list.get(i).getNextTimeoutStr());
             } else {
@@ -98,7 +110,7 @@ public class createJsonArrayFromList implements java.io.Serializable
         return ja;
     }
     
-    public JSONArray createJsonArrayFromDetail(JobInfo jobInfo, String type) throws JSONException {
+    public JSONArray CreateJsonArrayFromDetail(JobInfo jobInfo, String type) throws JSONException {
             
         JSONArray ja = new JSONArray();
         
@@ -149,6 +161,18 @@ public class createJsonArrayFromList implements java.io.Serializable
             jo.put("username", jobInfo.getUsername());
             jo.put("jobcheck", jobInfo.getJobcheck());
             jo.put("needjobid", jobInfo.getNeedjobid());
+            
+            jo.put("sshuser", jobInfo.getSshuser());
+            jo.put("sshpassword", jobInfo.getSshpassword());
+            jo.put("sshhost", jobInfo.getSshhost());
+            jo.put("dbuserName", jobInfo.getDbuserName());
+            jo.put("dbpassword", jobInfo.getDbpassword());
+            jo.put("rhost", jobInfo.getRhost());
+            jo.put("rsid", jobInfo.getRsid());
+            jo.put("rport", jobInfo.getRport()); 
+            
+            jo.put("exportquery", jobInfo.getExportquery());  
+            
             if (type.equals("A")) {
                jo.put("nextTimeout", jobInfo.getNextTimeoutStr());
             } else {

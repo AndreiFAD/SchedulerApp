@@ -34,7 +34,7 @@ import org.json.simple.JSONValue;
  *
  * @author Fekete András Demeter 
  */
-public class readformjson {
+public class ReadFormJson {
     
     /**
      *

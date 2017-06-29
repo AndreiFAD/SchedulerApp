@@ -40,7 +40,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  *
  * @author Fekete András Demeter 
  */
-public class csvimporttooracle {
+public class CsvImportToOracle {
  
     /**
      *

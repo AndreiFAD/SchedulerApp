@@ -17,7 +17,7 @@
  */
 package com.schedulerapp.ProcessClasses;
 
-import com.schedulerapp.FixClasses.mailSMTP;
+import com.schedulerapp.FixClasses.MailSMTP;
 import com.schedulerapp.FixClasses.JdbcHandler;
 import java.io.File;
 import java.sql.Connection;
@@ -77,7 +77,7 @@ public class SQLRunToExport {
                         ResultSet resultSet = stmt.executeQuery();
                         ResultSetToCSV resultSetToCSV = new ResultSetToCSV(resultSet,filePath+"/"+filename+filenamefix+fileformat);
                         
-                        mailSMTP sendmessage = new mailSMTP();
+                        MailSMTP sendmessage = new MailSMTP();
                         
                         if (To.contains("@") || cc.contains("@") || bcc.contains("@")) {
                             
@@ -118,7 +118,7 @@ public class SQLRunToExport {
                         ResultSetToXLS resultSetToExcel = new ResultSetToXLS(resultSet,
                             new ResultSetToXLS.FormatType[] {}, "datalist");
                         resultSetToExcel.generate(new File(filePath+"/"+filename+filenamefix+fileformat));
-                        mailSMTP sendmessage = new mailSMTP();
+                        MailSMTP sendmessage = new MailSMTP();
 
                         if (To.contains("@") || cc.contains("@") || bcc.contains("@")) {
                             
@@ -161,7 +161,7 @@ public class SQLRunToExport {
                                 new ResultSetToXLSX.FormatType[] {}, "datalist");
                         resultSetToExcel.generate(new File(filePath+"/"+filename+filenamefix+fileformat));
                         
-                        mailSMTP sendmessage = new mailSMTP();
+                        MailSMTP sendmessage = new MailSMTP();
 
                         if (To.contains("@") || cc.contains("@") || bcc.contains("@")) {
                             if (attachment.equals("-")) {

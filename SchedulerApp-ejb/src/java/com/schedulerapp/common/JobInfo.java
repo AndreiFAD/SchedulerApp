@@ -79,6 +79,16 @@ public class JobInfo implements java.io.Serializable
     private String jobcheck;
     private String needjobid;
     
+    private String sshuser;
+    private String sshpassword;
+    private String sshhost;
+    private String dbuserName;
+    private String dbpassword;
+    private String rhost;
+    private String rsid;
+    private String rport;
+    private String exportquery;
+
     
     private Date nextTimeout;
 
@@ -138,6 +148,16 @@ public class JobInfo implements java.io.Serializable
         this.jobcheck="false";
         this.needjobid="0";
         
+        this.sshuser="-";
+        this.sshpassword="-";
+        this.sshhost="-";
+        this.dbuserName="-";
+        this.dbpassword="-";
+        this.rhost="-";
+        this.rsid="-";
+        this.rport="-";
+        this.exportquery="-";
+        
         //Default values
         this.startDate = new Date();
         this.endDate = null;
@@ -149,6 +169,151 @@ public class JobInfo implements java.io.Serializable
         this.year = "*";        //Every Year
         this.dayOfWeek = "*";   //Every Day of Week (Sun-Sat)
     }
+
+     /**
+     *
+     * @return exportquery
+     */
+    public String getExportquery() {
+        return exportquery;
+    }
+
+    /**
+     *
+     * @param exportquery set exportquery
+     */
+    public void setExportquery(String exportquery) {
+        this.exportquery = exportquery;
+    }
+
+    /**
+     *
+     * @return sshuser
+     */
+    public String getSshuser() {
+        return sshuser;
+    }
+
+    /**
+     *
+     * @param sshuser set sshuser
+     */
+    public void setSshuser(String sshuser) {
+        this.sshuser = sshuser;
+    }
+
+    /**
+     *
+     * @return sshpassword
+     */
+    public String getSshpassword() {
+        return sshpassword;
+    }
+
+    /**
+     *
+     * @param sshpassword set sshpassword
+     */
+    public void setSshpassword(String sshpassword) {
+        this.sshpassword = sshpassword;
+    }
+
+    /**
+     *
+     * @return sshhost
+     */
+    public String getSshhost() {
+        return sshhost;
+    }
+
+    /**
+     *
+     * @param sshhost set sshhost
+     */
+    public void setSshhost(String sshhost) {
+        this.sshhost = sshhost;
+    }
+
+    /**
+     *
+     * @return dbuserName
+     */
+    public String getDbuserName() {
+        return dbuserName;
+    }
+
+    /**
+     *
+     * @param dbuserName set dbuserName
+     */
+    public void setDbuserName(String dbuserName) {
+        this.dbuserName = dbuserName;
+    }
+
+    /**
+     *
+     * @return dbpassword
+     */
+    public String getDbpassword() {
+        return dbpassword;
+    }
+
+    /**
+     *
+     * @param dbpassword set dbpassword
+     */
+    public void setDbpassword(String dbpassword) {
+        this.dbpassword = dbpassword;
+    }
+
+    /**
+     *
+     * @return rhost
+     */
+    public String getRhost() {
+        return rhost;
+    }
+
+    /**
+     *
+     * @param rhost set rhost
+     */
+    public void setRhost(String rhost) {
+        this.rhost = rhost;
+    }
+
+    /**
+     *
+     * @return rsid
+     */
+    public String getRsid() {
+        return rsid;
+    }
+
+    /**
+     *
+     * @param rsid set rsid
+     */
+    public void setRsid(String rsid) {
+        this.rsid = rsid;
+    }
+
+    /**
+     *
+     * @return rport
+     */
+    public String getRport() {
+        return rport;
+    }
+
+    /**
+     *
+     * @param rport set rport
+     */
+    public void setRport(String rport) {
+        this.rport = rport;
+    }
+    
 
     /**
      *

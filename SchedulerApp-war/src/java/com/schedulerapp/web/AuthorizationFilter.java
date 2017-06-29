@@ -19,6 +19,7 @@ package com.schedulerapp.web;
 
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -71,13 +72,13 @@ public class AuthorizationFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
-			if (reqURI.indexOf("/login.xhtml") >= 0
+			if (reqURI.indexOf("/Login.xhtml") >= 0
 					|| (ses != null && ses.getAttribute("username") != null)
 					|| reqURI.indexOf("/public/") >= 0
 					|| reqURI.contains("javax.faces.resource"))
 				chain.doFilter(request, response);
 			else
-				resp.sendRedirect(reqt.getContextPath() + "/login.xhtml");
+				resp.sendRedirect(reqt.getContextPath() + "/Login.xhtml");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

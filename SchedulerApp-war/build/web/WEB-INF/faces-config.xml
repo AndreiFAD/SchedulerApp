@@ -5,7 +5,7 @@
 	http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
 	<navigation-rule>
-		<from-view-id>/login.xhtml</from-view-id>
+		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>admin</from-outcome>
 			<to-view-id>/JobList.xhtml</to-view-id>

@@ -25,7 +25,7 @@ import java.util.Date;
  *
  * @author Fekete András Demeter 
  */
-public class lastlogtime {
+public class Lastlogtime {
     
     /**
      *
@@ -35,7 +35,7 @@ public class lastlogtime {
      */
     public String lastlogtime(String logid) throws SQLException
     {
-        logytodb K = new logytodb();
+        Loggtodb K = new Loggtodb();
         String datastring = K.last_log_time(logid);
         if (datastring.equals("null")){
             System.err.println("never ran");

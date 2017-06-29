@@ -309,6 +309,69 @@
                 </p:inputText>
                 <h:outputText value="example: c:/temp/test.exe or c:/temp/test.cmd"/>
             </h:panelGrid>
+               <br></br>
+              <h:panelGrid columns="3" bgcolor="#eff5fa" style="width: 1000px">
+                
+                <h:outputText value="SSH tunnel data" style="font-size: 15px" />
+                <h:outputText value="FORM"/>
+                <h:outputText value=""/>
+                
+                <h:outputText value="SSH tunnel Oracle query for export or query for import resultset"/>
+                <p:inputTextarea  cols="40" rows="4" id="exportquery" value="#{JobMBean.selectedJob.exportquery}"  style="font-weight: normal; font-size: 13px">
+                          <f:validateLength minimum="1"  maximum="4000" />
+                </p:inputTextarea>
+                <h:outputText value="without ';'"/>
+                
+                <h:outputText value="SSH tunnel username"/>
+                <p:inputText id="sshuser" value="#{JobMBean.selectedJob.sshuser}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: user1name21"/>
+                
+                <h:outputText value="SSH tunnel password"/>
+                <p:inputText id="sshpassword" value="#{JobMBean.selectedJob.sshpassword}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: Aa123456"/>
+                
+                <h:outputText value="SSH tunnel host"/>
+                <p:inputText id="sshhost" value="#{JobMBean.selectedJob.sshhost}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: sship.domain.intra or 1.0.0.127"/>
+                
+                <h:outputText value="SSH tunnel database username"/>
+                <p:inputText id="dbuserName" value="#{JobMBean.selectedJob.dbuserName}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: username12"/>
+                
+                <h:outputText value="SSH tunnel database password"/>
+                <p:inputText id="dbpassword" value="#{JobMBean.selectedJob.dbpassword}" size="40"  style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: Aa123455"/>
+                
+                <h:outputText value="SSH tunnel remote host"/>
+                <p:inputText id="rhost" value="#{JobMBean.selectedJob.rhost}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: sship.domain.intra or 1.0.0.127"/>
+                
+                <h:outputText value="SSH tunnel remote sid"/>
+                <p:inputText id="rsid" value="#{JobMBean.selectedJob.rsid}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: report"/>
+                
+                <h:outputText value="SSH tunnel remote port"/>
+                <p:inputText id="rport" value="#{JobMBean.selectedJob.rport}" size="40" style="font-weight: normal; font-size: 13px">
+                                                                   <f:validateLength minimum="1" />
+                </p:inputText>
+                <h:outputText value="example: 1521"/>
+                
+              </h:panelGrid>  
+                
                <br></br> 
             <p:commandButton value="Back"   ajax="false" action="JobList?faces-redirect=true" />
             <p:commandButton value="Update" ajax="false" action="#{JobMBean.updateJob}"/>

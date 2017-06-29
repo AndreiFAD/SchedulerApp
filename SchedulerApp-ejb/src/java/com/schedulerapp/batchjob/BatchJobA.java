@@ -19,9 +19,9 @@ package com.schedulerapp.batchjob;
 
 import com.schedulerapp.FixClasses.BatchJobInterface;
 import com.schedulerapp.ProcessClasses.RunExcelMacro;
-import com.schedulerapp.FixClasses.logytodb;
-import com.schedulerapp.FixClasses.lastlogtime;
-import com.schedulerapp.FixClasses.sendPushMail;
+import com.schedulerapp.FixClasses.Loggtodb;
+import com.schedulerapp.FixClasses.Lastlogtime;
+import com.schedulerapp.FixClasses.SendPushMail;
 import com.schedulerapp.common.JobInfo;
 import java.sql.SQLException;
 import java.util.Date;
@@ -84,13 +84,13 @@ public class BatchJobA implements BatchJobInterface
                 String jobid_last_time;
                 String needjobid_last_time;
                 try {
-                    lastlogtime tz = new lastlogtime();
+                    Lastlogtime tz = new Lastlogtime();
                     jobid_last_time = tz.lastlogtime(jobid);
                     needjobid_last_time = tz.lastlogtime(needjobid);
                     if (needjobcheck.equals("true") && (jobid_last_time.equals("still has not run") || jobid_last_time.equals("never ran")) && needjobid_last_time.equals("completed today")){  // ha kell figyelni a függőséget és ő még ma nem futott
                     
 
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -107,7 +107,7 @@ public class BatchJobA implements BatchJobInterface
                                         String results = f.RunExcelMacro(Excelpath,  excelname,  macroname); 
                                         
                                          if (To.contains("@") || cc.contains("@") || bcc.contains("@")) {
-                                           sendPushMail o = new sendPushMail();
+                                           SendPushMail o = new SendPushMail();
                                            o.sendPushMail( subject,  jobid,  To,  cc,  bcc,  macrofilnalfile);
                                          }
                                         
@@ -152,7 +152,7 @@ public class BatchJobA implements BatchJobInterface
                         
                     } else if (needjobcheck.equals("false")) {
                         
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         try {
                             vid = l.logentry(Integer.parseInt(jobid), jobname, "Start of BatchJobA "+jobid+" "+jobname+" at " + new Date() + "...");
@@ -168,7 +168,7 @@ public class BatchJobA implements BatchJobInterface
                                         String results = f.RunExcelMacro(Excelpath,  excelname,  macroname);  
                                         
                                          if (To.contains("@") || cc.contains("@") || bcc.contains("@")) {
-                                           sendPushMail o = new sendPushMail();
+                                           SendPushMail o = new SendPushMail();
                                            o.sendPushMail( subject,  jobid,  To,  cc,  bcc,  macrofilnalfile);
                                          }
                                         

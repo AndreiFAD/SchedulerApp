@@ -25,7 +25,7 @@ import oracle.jdbc.*;
  *
  * @author Fekete András Demeter 
  */
-public class logytodb {
+public class Loggtodb {
     
     /**
      *

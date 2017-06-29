@@ -85,8 +85,20 @@ public class JobMBean implements java.io.Serializable
                             "nvl(FILESTRINGNAME,'-'), \n" + 
                             "nvl(CSVSPLITBY,'-'), \n" + 
                             "nvl(MOVEPATCH,'-'), \n" + 
-                            "  nvl(FILEFORMATTYPETOORA,'-') \n" + 
-                            " from SCHEDULER_APP_JOBS";
+                            "nvl(FILEFORMATTYPETOORA,'-'), \n" + 
+                
+                            "nvl(sshuser,''), \n" +
+                            "nvl(sshpassword,''), \n" +
+                            "nvl(sshhost,''), \n" +
+                            "nvl(dbuserName,''), \n" +
+                            "nvl(dbpassword,''), \n" +
+                            "nvl(rhost,''), \n" +
+                            "nvl(rsid,''), \n" +
+                            "nvl(rport,''), \n" +
+                            
+                            "nvl(exportquery,'') \n" +
+                
+                            "from SCHEDULER_APP_JOBS";
         FacesContext context = FacesContext.getCurrentInstance();
         java.sql.Connection conn = null;
         try{
@@ -149,6 +161,18 @@ public class JobMBean implements java.io.Serializable
                         newitem.setCvsSplitBy(rsora.getString(44));
                         newitem.setMovePatch(rsora.getString(45));
                         newitem.setFileformattypetoora(rsora.getString(46));
+                        
+                        newitem.setSshuser(rsora.getString(47));
+                        newitem.setSshpassword(rsora.getString(48));
+                        newitem.setSshhost(rsora.getString(49));
+                        newitem.setDbuserName(rsora.getString(50));
+                        newitem.setDbpassword(rsora.getString(51));
+                        newitem.setRhost(rsora.getString(52));
+                        newitem.setRsid(rsora.getString(53));
+                        newitem.setRport(rsora.getString(54));
+                        
+                        newitem.setExportquery(rsora.getString(55));
+                        
                         jobSessionBean.createJob(newitem,"n");
                         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Success", "Job import is successful! - id:"+rsora.getString(1)));
@@ -476,7 +500,7 @@ public class JobMBean implements java.io.Serializable
             } else if (selectedJob.getMethodtype().equals("exerun")){
                 selectedJob.setJobClassName("java:module/BatchJobB");
                 
-                return "consoleExeRun";
+                return "ConsoleExeRun";
             } else if (selectedJob.getMethodtype().equals("RunExcelMAcro")){
                 selectedJob.setJobClassName("java:module/BatchJobA");
                 
@@ -493,6 +517,14 @@ public class JobMBean implements java.io.Serializable
                 selectedJob.setJobClassName("java:module/BatchJobF");
                 
                 return "CSVtoOracle";
+            } else if (selectedJob.getMethodtype().equals("SSHtunnelexportfromOracle")){  
+                selectedJob.setJobClassName("java:module/BatchJobG");
+                
+                return "OracleExportWithSSH"; //
+            } else if (selectedJob.getMethodtype().equals("SSHtunnelOracleimporttoOracle")){  
+                selectedJob.setJobClassName("java:module/BatchJobH");
+                
+                return "OracleImportToOracleWithSSH"; //
             } else {
                 
             return "JobDetails";
@@ -554,7 +586,18 @@ public class JobMBean implements java.io.Serializable
                         "  needjobid, \n" + 
                         "  MOD_USER, \n" +
                         "  DATE_STR, \n" +
-                        "  MOD \n" +
+                        "  MOD, \n" +
+                        
+                        "  sshuser, \n" +
+                        "  sshpassword, \n" +
+                        "  sshhost, \n" +
+                        "  dbuserName, \n" +
+                        "  dbpassword, \n" +
+                        "  rhost, \n" +
+                        "  rsid, \n" +
+                        "  rport, \n" +
+                        "  exportquery \n" +
+                
                         "  ) \n" +
                         "  VALUES \n" +
                         "  ('"+jobInfo.getJobId()+"',"+
@@ -605,7 +648,18 @@ public class JobMBean implements java.io.Serializable
                         "'"+jobInfo.getNeedjobid().replace("'", "''")+"',"+
                         "'"+SessionUtils.getUserName().toString()+"',"+
                         "to_char(sysdate,'YYYYMMDDHH24MISS'),"+
-                        "'"+MOD+"'"+
+                        "'"+MOD+"',"+
+                
+                        "'"+jobInfo.getSshuser().replace("'", "''")+"',"+
+                        "'"+jobInfo.getSshpassword().replace("'", "''")+"',"+
+                        "'"+jobInfo.getSshhost().replace("'", "''")+"',"+
+                        "'"+jobInfo.getDbuserName().replace("'", "''")+"',"+
+                        "'"+jobInfo.getDbpassword().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRhost().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRsid().replace("'", "''")+"',"+
+                        "'"+jobInfo.getRport().replace("'", "''")+"',"+
+                        "'"+jobInfo.getExportquery().replace("'", "''")+
+                
                         ")";
                 java.sql.Connection conn = null;
                 try{

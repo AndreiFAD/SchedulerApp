@@ -18,9 +18,9 @@
 package com.schedulerapp.batchjob;
 
 import com.schedulerapp.FixClasses.BatchJobInterface;
-import com.schedulerapp.FixClasses.lastlogtime;
-import com.schedulerapp.ProcessClasses.readformjson;
-import com.schedulerapp.FixClasses.logytodb;
+import com.schedulerapp.FixClasses.Lastlogtime;
+import com.schedulerapp.ProcessClasses.ReadFormJson;
+import com.schedulerapp.FixClasses.Loggtodb;
 import com.schedulerapp.common.JobInfo;
 import java.sql.SQLException;
 import java.util.Date;
@@ -83,13 +83,13 @@ public class BatchJobE implements BatchJobInterface
                 String needjobid_last_time;
                 
                 try {
-                        lastlogtime tz =new lastlogtime();
+                        Lastlogtime tz =new Lastlogtime();
                         jobid_last_time=tz.lastlogtime(jobid);
                         needjobid_last_time=tz.lastlogtime(needjobid);
                     
                     if (needjobcheck.equals("true") && (jobid_last_time.equals("still has not run") || jobid_last_time.equals("never ran")) && needjobid_last_time.equals("completed today")){  // ha kell figyelni a függőséget és ő még ma nem futott
                     
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -101,7 +101,7 @@ public class BatchJobE implements BatchJobInterface
                         
                         try {
                             
-                            readformjson ur= new readformjson();
+                            ReadFormJson ur= new ReadFormJson();
                             String results = ur.readformjson(mysqlurl, mysqluser, mysqlpass, mysqlquery, oracletabel, oraclecol, oradeletetabel, oracledbname);
                             
                             if (results.equals("success")){
@@ -142,7 +142,7 @@ public class BatchJobE implements BatchJobInterface
                  
                 } else if (needjobcheck.equals("false")) {        
                         
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -154,7 +154,7 @@ public class BatchJobE implements BatchJobInterface
                         
                         try {
                             
-                                   readformjson ur= new readformjson();
+                                   ReadFormJson ur= new ReadFormJson();
                             String results = ur.readformjson(mysqlurl, mysqluser, mysqlpass, mysqlquery, oracletabel, oraclecol, oradeletetabel, oracledbname);
                             
                             if (results.equals("success")){

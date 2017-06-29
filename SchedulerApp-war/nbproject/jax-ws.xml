@@ -5,5 +5,6 @@
       <implementation-class>com.schedulerapp.ws_classes.JobInfoWebService</implementation-class>
     </service>
   </services>
-  <clients/>
+  <clients>
+  </clients>
 </jax-ws>

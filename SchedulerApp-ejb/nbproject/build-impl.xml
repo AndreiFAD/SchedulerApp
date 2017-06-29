@@ -824,6 +824,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.commons-codec-1.10.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.apache-commons-net.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.json-simple-1.1.1.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${file.reference.com.jcraft.jsch_0.1.31.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${file.reference.curvesapi-1.04.jar}" property="manifest.file.reference.curvesapi-1.04.jar"/>
@@ -857,8 +858,9 @@ exists or setup the property manually. For example like this:
         <basename file="${file.reference.commons-codec-1.10.jar}" property="manifest.file.reference.commons-codec-1.10.jar"/>
         <basename file="${file.reference.apache-commons-net.jar}" property="manifest.file.reference.apache-commons-net.jar"/>
         <basename file="${file.reference.json-simple-1.1.1.jar}" property="manifest.file.reference.json-simple-1.1.1.jar"/>
+        <basename file="${file.reference.com.jcraft.jsch_0.1.31.jar}" property="manifest.file.reference.com.jcraft.jsch_0.1.31.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 jar-9 jar-10 jar-11 jar-12 jar-13 jar-14 jar-15 jar-16 jar-17 jar-18 jar-19 jar-20 jar-21 jar-22 jar-23 jar-24 jar-25 jar-26 jar-27 jar-28 jar-29 jar-30 jar-31 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 jar-9 jar-10 jar-11 jar-12 jar-13 jar-14 jar-15 jar-16 jar-17 jar-18 jar-19 jar-20 jar-21 jar-22 jar-23 jar-24 jar-25 jar-26 jar-27 jar-28 jar-29 jar-30 jar-31 jar-32 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.curvesapi-1.04.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.dom4j-1.6.1.jar}"/>
             <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.ojdbc6.jar}"/>
@@ -890,6 +892,7 @@ exists or setup the property manually. For example like this:
             <attribute name="jar-29-Extension-Name" value="${manifest.file.reference.commons-codec-1.10.jar}"/>
             <attribute name="jar-30-Extension-Name" value="${manifest.file.reference.apache-commons-net.jar}"/>
             <attribute name="jar-31-Extension-Name" value="${manifest.file.reference.json-simple-1.1.1.jar}"/>
+            <attribute name="jar-32-Extension-Name" value="${manifest.file.reference.com.jcraft.jsch_0.1.31.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
@@ -924,6 +927,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.commons-codec-1.10.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.apache-commons-net.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.json-simple-1.1.1.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.com.jcraft.jsch_0.1.31.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">

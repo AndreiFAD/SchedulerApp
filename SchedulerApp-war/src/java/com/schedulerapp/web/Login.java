@@ -104,7 +104,7 @@ public class Login implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Incorrect Username and Password",
 							"Please enter correct username and Password"));
-			return "login";
+			return "Login";
 		}
 	}
     //logout event, invalidate session
@@ -116,6 +116,6 @@ public class Login implements Serializable {
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+		return "Login";
 	}
 }

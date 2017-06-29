@@ -18,12 +18,19 @@
 package com.schedulerapp.FixClasses;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import java.util.zip.GZIPOutputStream;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -42,7 +49,7 @@ import javax.mail.internet.MimeMultipart;
  * @author Fekete András Demeter 
  */
 
-public class mailSMTP {
+public class MailSMTP {
     
    private final boolean debug = false;
 
@@ -57,8 +64,9 @@ public class mailSMTP {
      * @param ripurl report url path if upload example  to Share
      * @throws UnsupportedEncodingException UnsupportedEncodingException
      * @throws MessagingException MessagingException
+     * @throws java.io.FileNotFoundException
      */
-    public void mailSMTP(String jobid,String v_to,String v_cc,String v_bcc, String v_subject,String filefullpath, String ripurl) throws UnsupportedEncodingException, MessagingException {
+    public void mailSMTP(String jobid,String v_to,String v_cc,String v_bcc, String v_subject,String filefullpath, String ripurl) throws UnsupportedEncodingException, MessagingException, FileNotFoundException, IOException, Exception {
         
          Properties prop=new Properties();
          prop.put("mail.smtp.auth", "false");
@@ -348,24 +356,55 @@ public class mailSMTP {
         
         if (!filefullpath.equals("-")){
             
-            try{
+      try{
+                
                 File fille = new File(filefullpath);
                 Multipart multipart = new MimeMultipart(); // creating a multipart is OK
                 BodyPart htmlBodyPart = new MimeBodyPart(); //4
                 htmlBodyPart.setContent(messagehtml ,"text/html; charset=UTF-8"); //5
                 multipart.addBodyPart(htmlBodyPart); // 6
-                
                 // Creating the first body part of the multipart, it's OK
-                MimeBodyPart messageBodyPart = new MimeBodyPart();
-                DataSource source = new FileDataSource(filefullpath);
-                messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName(fille.getName());
-                multipart.addBodyPart(messageBodyPart);
-                message.setContent(multipart);
-                Transport.send(message);
-                System.out.println("Sent message successfully....with attachment");
-            }catch (MessagingException mex) {
+                DataSource source = null;
+                
+                if ((int)(fille.length()/1024/1024) > 10) {
+            
+                    FileInputStream fis = new FileInputStream(filefullpath);
+                    FileOutputStream fos = new FileOutputStream(filefullpath+".gz");
+                    GZIPOutputStream gos = new GZIPOutputStream(fos);
+
+                    doCopy(fis, gos); // copy and compress
+                    
+                    fille = new File(filefullpath+".gz");
+                    source = new FileDataSource(filefullpath+".gz");
+                    
+                } else {
+                    
+                    fille = new File(filefullpath);
+                    source = new FileDataSource(filefullpath);
+                }
+                
+                if ((int)(fille.length()/1024/1024) > 15) {
+                    message.setSubject("Attachment send fail! "+v_subject);
+                    message.setContent(multipart);
+                    Transport.send(message);
+                    System.out.println("Sent message successfully....without attachment, its over 15 mb");
+                    
+                } else {
+                    
+                    MimeBodyPart messageBodyPart = new MimeBodyPart();
+                    messageBodyPart.setDataHandler(new DataHandler(source));
+                    messageBodyPart.setFileName(fille.getName());
+                    multipart.addBodyPart(messageBodyPart);
+                    message.setContent(multipart);
+                    Transport.send(message);
+                    System.out.println("Sent message successfully....with attachment");
+                    
+                }
+                
+            } catch (MessagingException mex) {
+                
                 mex.getMessage();
+            
             }
             
         } else {
@@ -386,4 +425,13 @@ public class mailSMTP {
 
    }
 
+   public static void doCopy(InputStream is, OutputStream os) throws Exception {
+		int oneByte;
+		while ((oneByte = is.read()) != -1) {
+			os.write(oneByte);
+		}
+		os.close();
+		is.close();
+
+   }
 }

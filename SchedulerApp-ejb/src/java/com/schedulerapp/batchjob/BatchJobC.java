@@ -18,8 +18,8 @@
 package com.schedulerapp.batchjob;
 
 import com.schedulerapp.FixClasses.BatchJobInterface;
-import com.schedulerapp.FixClasses.logytodb;
-import com.schedulerapp.FixClasses.lastlogtime;
+import com.schedulerapp.FixClasses.Loggtodb;
+import com.schedulerapp.FixClasses.Lastlogtime;
 import com.schedulerapp.ProcessClasses.SQLRunToExport;
 import com.schedulerapp.common.JobInfo;
 import java.sql.SQLException;
@@ -86,7 +86,7 @@ public class BatchJobC implements BatchJobInterface
                 String needjobid_last_time;
                 try {
                     
-                    lastlogtime tz =new lastlogtime();
+                    Lastlogtime tz =new Lastlogtime();
                     jobid_last_time=tz.lastlogtime(jobid);
                     needjobid_last_time=tz.lastlogtime(needjobid);
                     
@@ -95,7 +95,7 @@ public class BatchJobC implements BatchJobInterface
  
 
                         
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {
@@ -149,7 +149,7 @@ public class BatchJobC implements BatchJobInterface
                 } else if (needjobcheck.equals("false")) {   
                         
                         
-                        logytodb l = new logytodb();
+                        Loggtodb l = new Loggtodb();
                         int vid = 0;
                         
                         try {

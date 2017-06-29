@@ -30,7 +30,7 @@ import oracle.jdbc.pool.OracleDataSource;
  *
  * @author Fekete András Demeter 
  */
-public class sendPushMail {
+public class SendPushMail {
     
     /**
      *

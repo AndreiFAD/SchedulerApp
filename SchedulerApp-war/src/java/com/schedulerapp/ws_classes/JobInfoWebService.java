@@ -59,8 +59,8 @@ public class JobInfoWebService {
         try {
             
             jobList2 = jobSessionBean.getInactiveJobList();
-            createJsonArrayFromList tz = new createJsonArrayFromList();
-            tt = tz.createJsonArrayFromList(jobList2,"I");
+            CreateJsonArrayFromList tz = new CreateJsonArrayFromList();
+            tt = tz.CreateJsonArrayFromList(jobList2,"I");
         
         } catch (Exception ex) {
             Logger.getLogger(JobInfoWebService.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,8 +88,8 @@ public class JobInfoWebService {
         try {
             
             jobList = jobSessionBean.getJobList();
-            createJsonArrayFromList tz = new createJsonArrayFromList();
-            tt = tz.createJsonArrayFromList(jobList,"A");
+            CreateJsonArrayFromList tz = new CreateJsonArrayFromList();
+            tt = tz.CreateJsonArrayFromList(jobList,"A");
         
         } catch (Exception ex) {
             Logger.getLogger(JobInfoWebService.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,8 +129,8 @@ public class JobInfoWebService {
                     Logger.getLogger(JobInfoWebService.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                createJsonArrayFromList tz = new createJsonArrayFromList();
-                JSONArray tt = tz.createJsonArrayFromList(jobList,"A");
+                CreateJsonArrayFromList tz = new CreateJsonArrayFromList();
+                JSONArray tt = tz.CreateJsonArrayFromList(jobList,"A");
                 
                 for (int i = 0; i < tt.length(); i++) {
                     JSONObject job = tt.getJSONObject(i);
@@ -154,8 +154,8 @@ public class JobInfoWebService {
                     Logger.getLogger(JobInfoWebService.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                createJsonArrayFromList tzi = new createJsonArrayFromList();
-                JSONArray tti = tzi.createJsonArrayFromList(jobList2,"I");
+                CreateJsonArrayFromList tzi = new CreateJsonArrayFromList();
+                JSONArray tti = tzi.CreateJsonArrayFromList(jobList2,"I");
                 
                 for (int i = 0; i < tti.length(); i++) {
                        JSONObject job = tti.getJSONObject(i);
