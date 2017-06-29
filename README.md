@@ -1,33 +1,39 @@
 # SchedulerApp - Reporting Tool for export-import Oracle Database
 
-Works fine on Win10 - Glassfish 4.1, OracleXE (8GB RAM, I3 CPU)
+Here is more examples to simplify your everyday life, making quick non-standard solutions, if you don’t have any tool for automation.
 
-functions (Timer call batchjob):
+System requirements:
+	min. 8 GB RAM or more
+	CPU Core i3 or higher
+	Win7 or Win10
+	Office 2007 or 2013 or 365
+	Glassfish 4.1.1
+	Java 8
+	OracleXE
 
-	export data from Oracle Database to file:
-			to .xlsx
-			to .xls
-			to .csv
+Functions:
 
-	import data to Oracle Database:
-			from .xslx
-			from .csv
-			from MySQL Database
-			from MySQL Database with JSON processed into fields
+	Exported from oracle databases in .xlsx, .xls or .csv format with link or attachment.
 
-	run .exe or .cmd(example calling MQ connection)
+	If it is larger then 10 MB, the report is compressed in .gz file automatically, but if it still larger then 16 MB, it does not send the attachment but alerts in subject the unsuccessful attachment.
 
-	run Excel macro
+	Excel Macro scheduled run
 
-	email send with attachment or with link and attachment if > 10 MB then file go to file.gz
-	
-	export from Oracle Database to file with ssh tunnel connection
-	
-	import from Oracle Database to Oracle Database with ssh tunnel connection
-	
-	login users with AD
-	
-	webservice to active jobs update, active jobs run, read active or inactiv joblist and parameters detail (response json) example with mobileApp
+	.exe, .cmd or other command line runs scheduled
+
+	Import data from files, (csv or xslx) or from MySQL database
+
+	File export from Oracle database via SSH Tunnel to xlsx csv or xls format
+
+	From Oracle database import data to another Oracle database via SSH Tunnel
+
+	Activedirectory authentication at login
+
+	Webservice features ready for Mobile client
+
+	Application is logging into databases, all the task runs and modifications too
+
+It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use one of the ready ones.
 
 
 logs into a database with Oracle package
