@@ -39,7 +39,7 @@ Easy to use input forms, and views with the Primefaces library.
 
 Logs into a database with Oracle package:
 
-Tables and package create .sql --> SchedulerApp/SchedulerApp_Tables_Packages_SQL/
+	Tables and package create .sql --> SchedulerApp/SchedulerApp_Tables_Packages_SQL/
 
 
 After table and package created, change in source this parameters:
