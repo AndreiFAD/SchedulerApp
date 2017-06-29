@@ -1,4 +1,4 @@
-create or replace PACKAGE BODY logme_package
+CREATE OR REPLACE PACKAGE BODY REPAPP.logme_package
 IS
 
 
@@ -67,8 +67,8 @@ PROCEDURE mail_send
    PROCEDURE new_process
 	 ( v_id OUT NUMBER,
        v_job_no IN NUMBER,
-       job_name IN VARCHAR2(50 BYTE),
-       job_info IN VARCHAR2(1000 BYTE) )
+       job_name IN VARCHAR2,
+       job_info IN VARCHAR2 )
       
     IS
 		avg_time number:=NULL;
@@ -87,8 +87,8 @@ PROCEDURE mail_send
 
    PROCEDURE close_process
 	 ( v_id IN NUMBER,
-       v_job_info IN VARCHAR2(1000 BYTE),
-       v_error VARCHAR2(512 BYTE) default '' )
+       v_job_info IN VARCHAR2,
+       v_error VARCHAR2 default '' )
       
     IS
 	 job_percent number:=NULL;
@@ -114,11 +114,11 @@ PROCEDURE mail_send
    PROCEDURE new_subprocess
      ( v_job_id IN NUMBER,
        job_sub_id IN NUMBER,
-       job_info IN VARCHAR2(1000 BYTE) )
+       job_info IN VARCHAR2 )
       
     IS
         v_job_no NUMBER;
-        v_job_name VARCHAR2(50 BYTE);
+        v_job_name VARCHAR2(2000);
    BEGIN
      select a.job_no into v_job_no from logme a where a.id=v_job_id;
      select a.job_name into v_job_name from logme a where a.id=v_job_id;
@@ -130,8 +130,8 @@ PROCEDURE mail_send
    PROCEDURE update_process
      ( v_job_id IN NUMBER,
        v_job_sub_id IN NUMBER,
-       v_job_progress_percent IN NUMBER(3,0) default -1,
-       v_job_info IN VARCHAR2(1000 BYTE) default 'NULL' )
+       v_job_progress_percent IN NUMBER default -1,
+       v_job_info IN VARCHAR2 default 'NULL' )
       
     IS
    BEGIN
