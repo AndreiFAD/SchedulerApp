@@ -27,11 +27,11 @@ Functions:
 
 	From Oracle database import data to another Oracle database via SSH Tunnel
 
-	Activedirectory authentication at login
+	Active Directory authentication at login
 
 	Webservice features ready for Mobile client
 
-	Application is logging into databases, all the task runs and modifications too
+	Application is logging into database, all the task runs and modifications too
 
 It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use one of the ready ones.
 
