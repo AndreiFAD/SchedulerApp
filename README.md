@@ -40,3 +40,106 @@ Easy to use input forms, and views with the Primefaces library.
 Logs into a database with Oracle package:
 
 Tables and package create .sql --> SchedulerApp/SchedulerApp_Tables_Packages_SQL/
+
+
+After table and package created, change in source this parameters:
+
+
+	SchedulerApp/SchedulerApp-ejb/src/java/com/schedulerapp/FixClasses/JdbcHandler.java
+
+		Set oracle databases connections:
+
+		line 45 : if (dbname.equals("rep_1")) {
+		line 48 : String URL = "jdbc:oracle:thin:@host.domain.com:1526:rep1";
+		line 49 : conn = DriverManager.getConnection(URL, "user", "passwd");
+	
+		line 54 : } else if (dbname.equals("rep_2")) {
+		line 57 : String URL = "jdbc:oracle:thin:@host.domain.com:1526:rep2";
+		line 58 : conn = DriverManager.getConnection(URL, "user", "passwd");
+
+		line 63 : } else if (dbname.equals("apex_1")) {
+		line 66 : String URL = "jdbc:oracle:thin:@host.domain.com:1526:rep3";
+		line 67 : conn = DriverManager.getConnection(URL, "user", "passwd");
+
+	SchedulerApp/SchedulerApp-ejb/src/java/com/schedulerapp/FixClasses/Loggtodb.java
+
+		Set database connection where create package and tables:
+		
+		line 37 : ods.setURL("jdbc:oracle:thin:@host.domain.com:1526:rep_1");
+		line 38 : ods.setUser("user");
+		line 39 : ods.setPassword("passwd");
+
+	SchedulerApp/SchedulerApp-ejb/src/java/com/schedulerapp/FixClasses/MailSMTP.java
+
+		Set smtp connection data:
+		
+		line 72 : prop.put("mail.smtp.auth", "false");
+		line 73 : prop.put("mail.smtp.host", "mail.host.com");
+		line 74 : prop.put("mail.smtp.ssl.trust", "mail.host.com");
+		line 75 : prop.put("mail.smtp.starttls.enable", "true");
+
+		If use sharepoint2013:
+		
+		line 87 : ripurl = ripurl.replace("//share.host.intra@SSL/DavWWWRoot" , "https://share.host.intra");
+		line 89 : String mail_image ="'http://hostip:8080/jpg/charts-graphs-cholesterol.png'";
+
+		Change message when send message with attachment and without:
+		
+		line 94 : email message
+		line 98 : email message
+
+		Reply mail button emailaddress:
+		
+		line 222 : mailto:reporting@host.com  reply mail address
+
+		line 335 : set sender emailaddress
+
+	SchedulerApp/SchedulerApp-ejb/src/java/com/schedulerapp/FixClasses/SendPushMail.java
+
+		Set database connection where create package and tables:
+		
+		line 42 : ods.setURL("jdbc:oracle:thin:@host.domin.com:1526:rep_1");
+		line 43 : ods.setUser("user");
+		line 44 : ods.setPassword("pass");
+
+	SchedulerApp/SchedulerApp-ejb/src/java/com/schedulerapp/ejb/JobSessionBean.java
+
+		Choose database connection dbname where create package and tables:
+		
+		line 100 : conn = Hand.getConnection("rep_1");
+		line 168 : conn = Hand.getConnection("rep_1");
+		line 548 : conn = Hand.getConnection("rep_1");
+		line 645 : conn = Hand.getConnection("rep_1");
+		line 862 : conn = Hand.getConnection("rep_1");
+		line 965 : conn = Hand.getConnection("rep_1");
+		line 1061 : conn = Hand.getConnection("rep_1");
+		line 1246 : conn = Hand.getConnection("rep_1");
+		line 1378 : conn = Hand.getConnection("rep_1");
+		line 1484 : conn = Hand.getConnection("rep_1");
+		line 1523 : conn = Hand.getConnection("rep_1");
+		line 1614 : conn = Hand.getConnection("rep_1");
+
+	SchedulerApp/SchedulerApp-war/src/java/com/schedulerapp/web/LoginDAO.java
+
+		Set data for Active Directory authentication:
+	
+		line 80 : env.put(Context.PROVIDER_URL, "ldap://ldaphost:port");
+		line 84 : env.put(Context.SECURITY_PRINCIPAL, UserName+"@ldaphost");
+
+	SchedulerApp/SchedulerApp-war/src/java/com/schedulerapp/web/JobMBean.java
+
+		Choose database connection dbname where create package and tables:
+		
+		line 107 : conn = Hand.getConnection("rep_1");
+		line 219 : conn = Hand.getConnection("rep_1");
+		line 668 : conn = Hand.getConnection("rep_1");
+
+	SchedulerApp/SchedulerApp-war/src/java/com/schedulerapp/ws_classes/LoginDAO_ws.java
+
+		Set data for Active Directory authentication:
+		
+		line 79 : env.put(Context.PROVIDER_URL, "ldap://ldaphost:389");
+		line 83 : env.put(Context.SECURITY_PRINCIPAL, UserName+"@ldaphost");
+
+
+
