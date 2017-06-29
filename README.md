@@ -19,7 +19,11 @@ functions (Timer call batchjob):
 
 	run Excel macro
 
-	email send with attachment or with link
+	email send with attachment or with link and attachment if > 10 MB then file go to file.gz
+	
+	export from Oracle Database to file with ssh tunnel connection
+	
+	import from Oracle Database to Oracle Database with ssh tunnel connection
 	
 	login users with AD
 	
