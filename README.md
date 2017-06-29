@@ -2,14 +2,14 @@
 
 Here is more examples to simplify your everyday life, making quick non-standard solutions, if you don’t have any tool for automation.
 
-System requirements:
-	min. 8 GB RAM or more
-	CPU Core i3 or higher
-	Win7 or Win10
-	Office 2007 or 2013 or 365
-	Glassfish 4.1.1
-	Java 8
-	OracleXE
+System requirements:<br><br>
+	min. 8 GB RAM or more<br>
+	CPU Core i3 or higher<br>
+	Win7 or Win10<br>
+	Office 2007 or 2013 or 365<br>
+	Glassfish 4.1.1<br>
+	Java 8<br>
+	OracleXE<br>
 
 Functions:
 
