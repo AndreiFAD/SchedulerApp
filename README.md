@@ -35,7 +35,8 @@ Functions:
 
 It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use one of the ready ones.
 
+Easy to use input forms, and views with the Primefaces library.
 
-logs into a database with Oracle package
+Logs into a database with Oracle package:
 
-Tabels and package create .sql --> SchedulerApp/SchedulerApp_Tables_Packages_SQL/
+Tables and package create .sql --> SchedulerApp/SchedulerApp_Tables_Packages_SQL/
