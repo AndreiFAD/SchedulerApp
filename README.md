@@ -32,7 +32,7 @@ Functions:
 
 	Webservice features ready for Mobile client
 
-	Application is logging into database, all the task runs and modifications too
+	Application is logging into database, when the task is running or modified
 
 It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use one of the ready ones.
 
