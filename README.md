@@ -34,7 +34,7 @@ Functions:
 
 	Application is logging into database, when the task is run or modified
 
-It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use one of the ready ones.
+It’s easy to redesign so that make your life more simple. Schedule your own java class or process by running a schedule or use this java classes.
 
 Easy to use input forms, and views with the Primefaces library.
 
