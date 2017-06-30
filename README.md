@@ -14,7 +14,7 @@ System requirements (Works fine on old Desktop):
 
 Functions:
 
-	Exported from oracle databases in .xlsx, .xls or .csv format with link or attachment.
+	Scheduled export from Oracle database to file .xlsx, .xls or .csv format with link or attachment.
 
 	If it is larger then 10 MB, the report is compressed in .gz file automatically, but if it still larger then 16 MB, it does not send the attachment but alerts in subject the unsuccessful attachment.
 
@@ -22,7 +22,7 @@ Functions:
 
 	.exe, .cmd or other command line runs scheduled
 
-	Import data from files, (csv or xslx) or from MySQL database
+	Import data to Oracle database from files, (csv or xslx) or from MySQL database
 
 	File export from Oracle database via SSH Tunnel to xlsx csv or xls format
 
